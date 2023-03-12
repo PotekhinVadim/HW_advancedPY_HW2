@@ -17,19 +17,12 @@ contacts_list_new = list()
 for contacts in contacts_list:
     contact_string = ','.join(contacts)
     contact_edit = re.sub(phone_pattern, phone_replace, contact_string)
+    contact_edit = re.sub(name_pattern, name_replace, contact_string)
     contact = contact_edit.split(',')
     contacts_list_new.append(contact)
 
-contacts_list = list()
-for contacts in contacts_list_new:
-    contact_string = ','.join(contacts)
-    contact_edit = re.sub(name_pattern, name_replace, contact_string)
-    contact = contact_edit.split(',')
-    contacts_list.append(contact)
-print(contacts_list)
-
-for i in contacts_list:
-      for j in contacts_list:
+for i in contacts_list_new:
+      for j in contacts_list_new:
         if i[0] == j[0]:
           if i[1] == '':
             i[1] = j[1]
@@ -44,7 +37,7 @@ for i in contacts_list:
           if i[6] == '':
             i[6] = j[6]
         contact_list = list()
-        for contacts in contacts_list:
+        for contacts in contacts_list_new:
             if contacts not in contact_list:
                 contact_list.append(contacts)
 pprint(contact_list)
